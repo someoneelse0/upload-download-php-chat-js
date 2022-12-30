@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<base target="_blank">
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+		<title>Chat</title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			h1{
+				text-align:center;
+			}
+			form{
+				margin:10px;
+				padding:10px;
+			}
+		</style>
+	</head>
+	<body>
+		<header>
+			<h1>Chat with any internaut</h1>
+		</header>
+		<form action="upload.php" method="post" enctype="multipart/form-data">
+			<fieldset>
+				<legend>Upload some file</legend>
+				<label>Choose the file:</label>
+				<input type="file" name="f" />
+				<button>Upload</button>
+			</fieldset>
+		</form>
+		<br />
+		<hr />
+		<br />
+		<ul>
+		</ul>
+		<br />
+		<iframe src="http://127.0.0.1:3030/" width="100%" height="385px"></iframe>
+		<script>
+			let iff=document.getElementsByTagName("input")[0];
+			let ul=document.getElementsByTagName("ul")[0];
+			let btn=document.getElementsByTagName("button")[0];
+			btn.addEventListener("click",function(){
+				let li=document.createElement("li");
+				let a=document.createElement("a");
+				a.href="download.php?f=files/"+iff.value.split("\\")[2];
+				let tx=document.createTextNode(iff.value.split("\\")[2]);
+				a.appendChild(tx);
+				let txx=document.createTextNode("Download: ");
+				li.appendChild(txx);
+				ul.appendChild(li);
+				li.appendChild(a);
+			},false);
+		</script>
+	</body>
+</html>
